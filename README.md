@@ -1,3 +1,7 @@
+# Small description TodosApp
+This is a simple lab for test the new functionality of Angular v 16. We can find inside this sample project the SIGNALS and how they works.
+https://github.com/monsterlessonsacademy/monsterlessonsacademy/tree/350-todo-app-with-angular-signals
+
 # TodosApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
