@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { TodosInterface } from '../models/todosModel';
-import { FilterEnum } from '../enums/enum';
+import { TodosInterface } from '../../../core/models/todosModel';
+import { FilterEnum } from '../../../core/enums/enum';
 import { map } from 'rxjs';
 
 @Injectable({

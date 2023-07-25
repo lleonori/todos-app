@@ -12,7 +12,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodosInterface } from '../models/todosModel';
+import { TodosInterface } from '../../../core/models/todosModel';
 import { TodosService } from '../services/todos.service';
 
 @Component({

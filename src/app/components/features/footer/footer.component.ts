@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../services/todos.service';
-import { FilterEnum } from '../enums/enum';
+import { FilterEnum } from '../../../core/enums/enum';
 
 @Component({
   selector: 'app-footer',
