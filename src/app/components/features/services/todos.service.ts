@@ -1,14 +1,20 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { TodosInterface } from '../models/todosModel';
 import { FilterEnum } from '../enums/enum';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodosService {
   // dichiarazione del Signal
-  todsSig = signal<TodosInterface[]>([]);
+  todosSig = signal<TodosInterface[]>([]);
   filterSig = signal<FilterEnum>(FilterEnum.all);
+
+  noTodosClass = computed(() => {
+    const todos = this.todosSig();
+    return todos.length === 0;
+  });
 
   addTodo(text: string): void {
     const newTodo: TodosInterface = {
@@ -18,7 +24,12 @@ export class TodosService {
     };
 
     // update del Signal
-    this.todsSig.update((todos) => [...todos, newTodo]);
+    this.todosSig.update((todos) => [...todos, newTodo]);
+  }
+
+  removeTodo(id: string | undefined): void {
+    // update del Signal
+    this.todosSig.update((todos) => todos.filter((todo) => todo.id !== id));
   }
 
   chageFilter(filterName: FilterEnum): void {
@@ -26,5 +37,28 @@ export class TodosService {
     // del signal ma andiamo a sovrascrivere
     // completamente il valore del nostro signal
     this.filterSig.set(filterName);
+  }
+
+  changeTodo(id: string | undefined, title: string) {
+    // update del Signal
+    this.todosSig.update((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, title } : todo))
+    );
+  }
+
+  toggleTodo(id: string | undefined) {
+    // update del Signal
+    this.todosSig.update((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
+  toggleAllTodos(isCompleted: boolean) {
+    // update del Signal
+    this.todosSig.update((todos) =>
+      todos.map((todo) => ({ ...todo, completed: isCompleted }))
+    );
   }
 }

@@ -1,4 +1,4 @@
-<footer *ngIf="!noTodosClass()" class="footer">
+<footer *ngIf="!todosService.noTodosClass()" class="footer">
   <span class="todo-count">
     <strong>{{ activeCount() }}</strong>
     {{ itemsLeftText() }}</span

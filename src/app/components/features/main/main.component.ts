@@ -19,7 +19,7 @@ export class MainComponent {
   // grazie a computed possiamo creare un nuovo
   // signal basato su altri signal
   visibleTodos = computed(() => {
-    const todos = this.todosService.todsSig();
+    const todos = this.todosService.todosSig();
     const filter = this.todosService.filterSig();
 
     if (filter === FilterEnum.active) {
@@ -30,8 +30,18 @@ export class MainComponent {
     return todos;
   });
 
+  isAllTodosSelected = computed(() => {
+    this.todosService.todosSig().every((todo) => todo.completed);
+  });
+
   setEditingId(editingId: string | null) {
-    debugger;
     this.editingId = editingId;
+  }
+
+  toggleAllTodos(event: Event): void {
+    debugger
+    this.todosService.toggleAllTodos(
+      (event.target as HTMLInputElement).checked
+    );
   }
 }

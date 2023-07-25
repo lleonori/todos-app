@@ -20,17 +20,12 @@ export class FooterComponent {
   // filter = this.todosService.filterSig();
   filterSig = this.todosService.filterSig;
 
-  noTodosClass = computed(() => {
-    const todos = this.todosService.todsSig();
-    return todos.length === 0;
-  });
-
   itemsLeftText = computed(() => {
     return `item${this.activeCount() !== 1 ? 's' : ''} left`;
   });
 
   activeCount = computed(() => {
-    const todos = this.todosService.todsSig();
+    const todos = this.todosService.todosSig();
     return todos.filter((todo) => !todo.completed).length;
   });
 
