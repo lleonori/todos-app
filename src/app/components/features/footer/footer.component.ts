@@ -2,12 +2,13 @@ import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
+import { AFilterComponent } from "../../shared/a-filter/a-filter.component";
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './footer.component.html',
+    selector: 'app-footer',
+    standalone: true,
+    templateUrl: './footer.component.html',
+    imports: [CommonModule, AFilterComponent]
 })
 export class FooterComponent {
   // dalla versione 14 di angular è posibile utilizzare
