@@ -8,6 +8,7 @@
       <app-a-filter
         [textFilter]="'All'"
         [typeFilter]="filterEnum.all"
+        (onChangeFilter)="changeFilter($event)"
       ></app-a-filter>
     </li>
     <li>

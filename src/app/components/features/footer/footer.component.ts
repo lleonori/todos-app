@@ -30,8 +30,7 @@ export class FooterComponent {
     return todos.filter((todo) => !todo.completed).length;
   });
 
-  changeFilter(event: Event, filterName: FilterEnum): void {
-    event.preventDefault();
+  changeFilter(filterName: FilterEnum): void {
     this.todosService.chageFilter(filterName);
   }
 

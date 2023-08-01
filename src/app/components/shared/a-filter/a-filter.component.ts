@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../../features/services/todos.service';
 import { FilterEnum } from 'src/app/core/enums/enum';
@@ -11,8 +11,9 @@ import { FilterEnum } from 'src/app/core/enums/enum';
 })
 export class AFilterComponent {
   @Input() textFilter: string = '';
-  @Input()
-  typeFilter: FilterEnum = FilterEnum.all;
+  @Input() typeFilter: FilterEnum = FilterEnum.all;
+  @Output() onChangeFilter = new EventEmitter<FilterEnum>();
+
   // dalla versione 14 di angular è posibile utilizzare
   // la funazione Inject per iniettare servizi
   todosService = inject(TodosService);
@@ -23,9 +24,8 @@ export class AFilterComponent {
   // filter = this.todosService.filterSig();
   filterSig = this.todosService.filterSig;
 
-  changeFilter(event: Event, filterName: FilterEnum): void {
-    event.preventDefault();
-    this.todosService.chageFilter(filterName);
+  changeFilter(filterName: FilterEnum) {
+    this.onChangeFilter.emit(filterName);
   }
 
   get filterEnum() {
