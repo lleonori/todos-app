@@ -374,7 +374,7 @@
     "components": [
         {
             "name": "AFilterComponent",
-            "id": "component-AFilterComponent-db3e5fe849324b58f11eb45ddc6f71e25896b221d8fad9fd329999e2d24d42555f0e5855746b5022fd682587486227f6be994bdba2f5f6347d126d459254004e",
+            "id": "component-AFilterComponent-2aa1943534a9d763e3ef4df648d0e9f8952f554a91ca7562623d8ab4d0ffb07f0f395351b749707682729662ab8b7d54fb54a6acced695ac0f6435b292a5aab7",
             "file": "src/app/components/shared/a-filter/a-filter.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -404,12 +404,21 @@
                     "defaultValue": "FilterEnum.all",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 14,
                     "type": "FilterEnum",
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onChangeFilter",
+                    "defaultValue": "new EventEmitter<FilterEnum>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [
                 {
                     "name": "filterSig",
@@ -419,7 +428,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 25
                 },
                 {
                     "name": "todosService",
@@ -429,19 +438,13 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 18
+                    "line": 19
                 }
             ],
             "methodsClass": [
                 {
                     "name": "changeFilter",
                     "args": [
-                        {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
                         {
                             "name": "filterName",
                             "type": "FilterEnum",
@@ -452,19 +455,10 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
-                        {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
                         {
                             "name": "filterName",
                             "type": "FilterEnum",
@@ -491,7 +485,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, inject } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { TodosService } from '../../features/services/todos.service';\r\nimport { FilterEnum } from 'src/app/core/enums/enum';\r\n\r\n@Component({\r\n  selector: 'app-a-filter',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './a-filter.component.html',\r\n})\r\nexport class AFilterComponent {\r\n  @Input() textFilter: string = '';\r\n  @Input()\r\n  typeFilter: FilterEnum = FilterEnum.all;\r\n  // dalla versione 14 di angular è posibile utilizzare\r\n  // la funazione Inject per iniettare servizi\r\n  todosService = inject(TodosService);\r\n\r\n  // in questo modo salviamo il valore del signal\r\n  // all'interno di una variabile rendendolo statico\r\n  // se cambia il valore del signal non siamo reattivi\r\n  // filter = this.todosService.filterSig();\r\n  filterSig = this.todosService.filterSig;\r\n\r\n  changeFilter(event: Event, filterName: FilterEnum): void {\r\n    event.preventDefault();\r\n    this.todosService.chageFilter(filterName);\r\n  }\r\n\r\n  get filterEnum() {\r\n    return FilterEnum;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output, inject } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { TodosService } from '../../features/services/todos.service';\r\nimport { FilterEnum } from 'src/app/core/enums/enum';\r\n\r\n@Component({\r\n  selector: 'app-a-filter',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './a-filter.component.html',\r\n})\r\nexport class AFilterComponent {\r\n  @Input() textFilter: string = '';\r\n  @Input() typeFilter: FilterEnum = FilterEnum.all;\r\n  @Output() onChangeFilter = new EventEmitter<FilterEnum>();\r\n\r\n  // dalla versione 14 di angular è posibile utilizzare\r\n  // la funazione Inject per iniettare servizi\r\n  todosService = inject(TodosService);\r\n\r\n  // in questo modo salviamo il valore del signal\r\n  // all'interno di una variabile rendendolo statico\r\n  // se cambia il valore del signal non siamo reattivi\r\n  // filter = this.todosService.filterSig();\r\n  filterSig = this.todosService.filterSig;\r\n\r\n  changeFilter(filterName: FilterEnum) {\r\n    this.onChangeFilter.emit(filterName);\r\n  }\r\n\r\n  get filterEnum() {\r\n    return FilterEnum;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -506,7 +500,7 @@
                     }
                 }
             },
-            "templateData": "<a\r\n  href=\"/\"\r\n  [ngClass]=\"{ selected: filterSig() === typeFilter }\"\r\n  (click)=\"changeFilter($event, typeFilter)\"\r\n>\r\n  {{ textFilter }}</a\r\n>\r\n"
+            "templateData": "<a\r\n  href=\"/\"\r\n  [ngClass]=\"{ selected: filterSig() === typeFilter }\"\r\n  (click)=\"changeFilter(typeFilter)\"\r\n>\r\n  {{ textFilter }}</a\r\n>\r\n"
         },
         {
             "name": "AppComponent",
@@ -569,7 +563,7 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-131e546b25f77c2ccdec6df20368e17546d2ffcdd0e5d2caedbd5d140fe4adc8d85712a297a3f5669a1f57d2c4f9fe48649cdd3c7c32d029510ce10d53c4b081",
+            "id": "component-FooterComponent-5dc18c1ad20acd3f63807d9b913921ec802753f1794f4918b26229b411a2316f54d111ec456449812aa9e3efdd4005593d88c261aaaa93106f967d3a93cd1c53",
             "file": "src/app/components/features/footer/footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -633,12 +627,6 @@
                     "name": "changeFilter",
                     "args": [
                         {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
-                        {
                             "name": "filterName",
                             "type": "FilterEnum",
                             "deprecated": false,
@@ -652,15 +640,6 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
-                        {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
                         {
                             "name": "filterName",
                             "type": "FilterEnum",
@@ -691,7 +670,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\nimport { FilterEnum } from '../../../core/enums/enum';\nimport { AFilterComponent } from \"../../shared/a-filter/a-filter.component\";\n\n@Component({\n    selector: 'app-footer',\n    standalone: true,\n    templateUrl: './footer.component.html',\n    imports: [CommonModule, AFilterComponent]\n})\nexport class FooterComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n\n  // in questo modo salviamo il valore del signal\n  // all'interno di una variabile rendendolo statico\n  // se cambia il valore del signal non siamo reattivi\n  // filter = this.todosService.filterSig();\n  filterSig = this.todosService.filterSig;\n\n  itemsLeftText = computed(() => {\n    return `item${this.activeCount() !== 1 ? 's' : ''} left`;\n  });\n\n  activeCount = computed(() => {\n    const todos = this.todosService.todosSig();\n    return todos.filter((todo) => !todo.completed).length;\n  });\n\n  changeFilter(event: Event, filterName: FilterEnum): void {\n    event.preventDefault();\n    this.todosService.chageFilter(filterName);\n  }\n\n  get filterEnum() {\n    return FilterEnum;\n  }\n}\n",
+            "sourceCode": "import { Component, computed, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\nimport { FilterEnum } from '../../../core/enums/enum';\nimport { AFilterComponent } from \"../../shared/a-filter/a-filter.component\";\n\n@Component({\n    selector: 'app-footer',\n    standalone: true,\n    templateUrl: './footer.component.html',\n    imports: [CommonModule, AFilterComponent]\n})\nexport class FooterComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n\n  // in questo modo salviamo il valore del signal\n  // all'interno di una variabile rendendolo statico\n  // se cambia il valore del signal non siamo reattivi\n  // filter = this.todosService.filterSig();\n  filterSig = this.todosService.filterSig;\n\n  itemsLeftText = computed(() => {\n    return `item${this.activeCount() !== 1 ? 's' : ''} left`;\n  });\n\n  activeCount = computed(() => {\n    const todos = this.todosService.todosSig();\n    return todos.filter((todo) => !todo.completed).length;\n  });\n\n  changeFilter(filterName: FilterEnum): void {\n    this.todosService.chageFilter(filterName);\n  }\n\n  get filterEnum() {\n    return FilterEnum;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -702,11 +681,11 @@
                         "name": "filterEnum",
                         "type": "",
                         "returnType": "",
-                        "line": 38
+                        "line": 37
                     }
                 }
             },
-            "templateData": "<footer *ngIf=\"!todosService.noTodosClass()\" class=\"footer\">\n  <span class=\"todo-count\">\n    <strong>{{ activeCount() }}</strong>\n    {{ itemsLeftText() }}</span\n  >\n  <ul class=\"filters\">\n    <li>\n      <app-a-filter\n        [textFilter]=\"'All'\"\n        [typeFilter]=\"filterEnum.all\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Active'\"\n        [typeFilter]=\"filterEnum.active\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Completed'\"\n        [typeFilter]=\"filterEnum.completed\"\n      ></app-a-filter>\n    </li>\n  </ul>\n</footer>\n"
+            "templateData": "<footer *ngIf=\"!todosService.noTodosClass()\" class=\"footer\">\n  <span class=\"todo-count\">\n    <strong>{{ activeCount() }}</strong>\n    {{ itemsLeftText() }}</span\n  >\n  <ul class=\"filters\">\n    <li>\n      <app-a-filter\n        [textFilter]=\"'All'\"\n        [typeFilter]=\"filterEnum.all\"\n        (onChangeFilter)=\"changeFilter($event)\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Active'\"\n        [typeFilter]=\"filterEnum.active\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Completed'\"\n        [typeFilter]=\"filterEnum.completed\"\n      ></app-a-filter>\n    </li>\n  </ul>\n</footer>\n"
         },
         {
             "name": "HeaderComponent",
@@ -1296,6 +1275,16 @@
                 "name": "actionsData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  onChangeFilter: action('onChangeFilter'),\r\n}"
+            },
+            {
+                "name": "actionsData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/task.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1316,6 +1305,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    textFilter: '1',\r\n    typeFilter: FilterEnum.all\r\n    // task: {\r\n    //   id: '1',\r\n    //   title: 'Test Task',\r\n    //   state: 'FILTER_ALL',\r\n    // },\r\n  },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/task.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1331,6 +1330,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<TaskComponent>",
                 "defaultValue": "{\r\n  title: 'Task',\r\n  component: TaskComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: TaskComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onPinTask: actionsData.onPinTask,\r\n      onArchiveTask: actionsData.onArchiveTask,\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "meta1",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AFilterComponent>",
+                "defaultValue": "{\r\n  title: 'a-filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Pinned",
@@ -1355,6 +1364,17 @@
         ],
         "functions": [],
         "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AFilterComponent>",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
             {
                 "name": "Story",
                 "ctype": "miscellaneous",
@@ -1399,6 +1419,38 @@
             }
         ],
         "groupedVariables": {
+            "src/stories/a-filter.stories.ts": [
+                {
+                    "name": "actionsData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  onChangeFilter: action('onChangeFilter'),\r\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    textFilter: '1',\r\n    typeFilter: FilterEnum.all\r\n    // task: {\r\n    //   id: '1',\r\n    //   title: 'Test Task',\r\n    //   state: 'FILTER_ALL',\r\n    // },\r\n  },\r\n}"
+                },
+                {
+                    "name": "meta1",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AFilterComponent>",
+                    "defaultValue": "{\r\n  title: 'a-filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
+                }
+            ],
             "src/stories/task.stories.ts": [
                 {
                     "name": "actionsData",
@@ -1499,6 +1551,19 @@
             ]
         },
         "groupedTypeAliases": {
+            "src/stories/a-filter.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AFilterComponent>",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
             "src/stories/task.stories.ts": [
                 {
                     "name": "Story",
@@ -1598,7 +1663,7 @@
                 "linktype": "component",
                 "name": "AFilterComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -1635,6 +1700,36 @@
                 "name": "TodosInterface",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/a-filter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actionsData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/a-filter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/a-filter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta1",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

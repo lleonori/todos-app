@@ -15,12 +15,14 @@
       <app-a-filter
         [textFilter]="'Active'"
         [typeFilter]="filterEnum.active"
+        (onChangeFilter)="changeFilter($event)"
       ></app-a-filter>
     </li>
     <li>
       <app-a-filter
         [textFilter]="'Completed'"
         [typeFilter]="filterEnum.completed"
+        (onChangeFilter)="changeFilter($event)"
       ></app-a-filter>
     </li>
   </ul>

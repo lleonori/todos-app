@@ -39,7 +39,6 @@ export class MainComponent {
   }
 
   toggleAllTodos(event: Event): void {
-    debugger
     this.todosService.toggleAllTodos(
       (event.target as HTMLInputElement).checked
     );

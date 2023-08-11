@@ -16,11 +16,15 @@ export class HeaderComponent {
 
   changeText(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.text = target.value;
+    if (target.value) {
+      this.text = target.value;
+    }
   }
 
   addTodo(): void {
-    this.todosService.addTodo(this.text);
+    if (this.text) {
+      this.todosService.addTodo(this.text);
+    }
     this.text = '';
   }
 }
