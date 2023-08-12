@@ -2,6 +2,38 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "ChangeTodoInterface",
+            "id": "interface-ChangeTodoInterface-db4c51c6000fbf1be31f97b0465ceef4dd9c968125cbac70b4a2a7d4234bef44e4738b5f6954e8ac9ef09d39e6230a3d4bffe81bf151c613af50647c368d60e5",
+            "file": "src/app/core/models/todos.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface TodosInterface {\r\n  userId?: number;\r\n  id?: string;\r\n  title: string;\r\n  completed: boolean;\r\n}\r\nexport interface ChangeTodoInterface {\r\n  id: string;\r\n  text: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 168,
+            "methods": []
+        },
+        {
             "name": "Task",
             "id": "interface-Task-0bcca9992b80e6884b02c7f696e71df26da52ae88bbfe829297eb07d6f5042a627fc38b720b0a4d45697a313662c1b03ab525b09251b9f9ad08e2c38cec21ea5",
             "file": "src/app/core/models/a-filter.model.ts",
@@ -88,12 +120,12 @@
         },
         {
             "name": "TodosInterface",
-            "id": "interface-TodosInterface-874c27f7a76ecbf8584847c8a13b844a6dac6f93c4316fa9909c6d63d306e0b7c8b7da199fd6df620f70e87982a4f023592b7152f6fad392cb5eab79bf530108",
+            "id": "interface-TodosInterface-db4c51c6000fbf1be31f97b0465ceef4dd9c968125cbac70b4a2a7d4234bef44e4738b5f6954e8ac9ef09d39e6230a3d4bffe81bf151c613af50647c368d60e5",
             "file": "src/app/core/models/todos.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface TodosInterface {\r\n  userId?: number;\r\n  id?: string;\r\n  title: string;\r\n  completed: boolean;\r\n}\r\n",
+            "sourceCode": "export interface TodosInterface {\r\n  userId?: number;\r\n  id?: string;\r\n  title: string;\r\n  completed: boolean;\r\n}\r\nexport interface ChangeTodoInterface {\r\n  id: string;\r\n  text: string;\r\n}\r\n",
             "properties": [
                 {
                     "name": "completed",
@@ -500,7 +532,7 @@
                     }
                 }
             },
-            "templateData": "<a\r\n  href=\"/\"\r\n  [ngClass]=\"{ selected: filterSig() === typeFilter }\"\r\n  (click)=\"changeFilter(typeFilter)\"\r\n>\r\n  {{ textFilter }}</a\r\n>\r\n"
+            "templateData": "<a\r\n  href=\"#\"\r\n  [ngClass]=\"{ selected: filterSig() === typeFilter }\"\r\n  (click)=\"changeFilter(typeFilter)\"\r\n>\r\n  {{ textFilter }}</a\r\n>\r\n"
         },
         {
             "name": "AppComponent",
@@ -685,11 +717,11 @@
                     }
                 }
             },
-            "templateData": "<footer *ngIf=\"!todosService.noTodosClass()\" class=\"footer\">\n  <span class=\"todo-count\">\n    <strong>{{ activeCount() }}</strong>\n    {{ itemsLeftText() }}</span\n  >\n  <ul class=\"filters\">\n    <li>\n      <app-a-filter\n        [textFilter]=\"'All'\"\n        [typeFilter]=\"filterEnum.all\"\n        (onChangeFilter)=\"changeFilter($event)\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Active'\"\n        [typeFilter]=\"filterEnum.active\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Completed'\"\n        [typeFilter]=\"filterEnum.completed\"\n      ></app-a-filter>\n    </li>\n  </ul>\n</footer>\n"
+            "templateData": "<footer *ngIf=\"!todosService.noTodosClass()\" class=\"footer\">\n  <span class=\"todo-count\">\n    <strong>{{ activeCount() }}</strong>\n    {{ itemsLeftText() }}</span\n  >\n  <ul class=\"filters\">\n    <li>\n      <app-a-filter\n        [textFilter]=\"'All'\"\n        [typeFilter]=\"filterEnum.all\"\n        (onChangeFilter)=\"changeFilter($event)\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Active'\"\n        [typeFilter]=\"filterEnum.active\"\n        (onChangeFilter)=\"changeFilter($event)\"\n      ></app-a-filter>\n    </li>\n    <li>\n      <app-a-filter\n        [textFilter]=\"'Completed'\"\n        [typeFilter]=\"filterEnum.completed\"\n        (onChangeFilter)=\"changeFilter($event)\"\n      ></app-a-filter>\n    </li>\n  </ul>\n</footer>\n"
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-466a11d480a92036da54ba3d63436e365a34df09e9d382075ce0932c4bee807319bf14516efcfa04a17479aba45779010ff011002bff90d01b898b2c42a6d5f4",
+            "id": "component-HeaderComponent-efb55498dec4fd26a7510a087617e04a57d51061487f879cafba63b97a5998739cd5ea6aa7c39763acdc051075abd188964631229f787a334ca3cfb8b3cae80e",
             "file": "src/app/components/features/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -735,7 +767,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 24,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -782,7 +814,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './header.component.html',\n})\nexport class HeaderComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n  text: string = '';\n\n  changeText(event: Event): void {\n    const target = event.target as HTMLInputElement;\n    this.text = target.value;\n  }\n\n  addTodo(): void {\n    this.todosService.addTodo(this.text);\n    this.text = '';\n  }\n}\n",
+            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './header.component.html',\n})\nexport class HeaderComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n  text: string = '';\n\n  changeText(event: Event): void {\n    const target = event.target as HTMLInputElement;\n    if (target.value) {\n      this.text = target.value;\n    }\n  }\n\n  addTodo(): void {\n    if (this.text) {\n      this.todosService.addTodo(this.text);\n    }\n    this.text = '';\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -790,7 +822,7 @@
         },
         {
             "name": "MainComponent",
-            "id": "component-MainComponent-5eb1ac112a9ea332e86c51b0998f8b52486e23069ab6e15d7ff32f59f9da02970fe10b6ddbeeb528c3262d4bff505b26cbc80ab078265cd8fb94d324cb009b73",
+            "id": "component-MainComponent-d556e89900d26726a12579ca9fe8542e33180a905bb0b8908379f7ca1b406908e5bc221e4dcad0f7dcc3cbc81e25f265b0713d5b535d317f9ea3530c425cbf50",
             "file": "src/app/components/features/main/main.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -816,7 +848,7 @@
                     "type": "string | null",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 18
                 },
                 {
                     "name": "isAllTodosSelected",
@@ -826,7 +858,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 33
+                    "line": 34
                 },
                 {
                     "name": "todosService",
@@ -836,7 +868,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 17
                 },
                 {
                     "name": "visibleTodos",
@@ -846,10 +878,38 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 21
+                    "line": 22
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "changeTodoText",
+                    "args": [
+                        {
+                            "name": "changedTodo",
+                            "type": "ChangeTodoInterface",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changedTodo",
+                            "type": "ChangeTodoInterface",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "setEditingId",
                     "args": [
@@ -863,7 +923,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -891,7 +951,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -925,11 +985,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\nimport { FilterEnum } from '../../../core/enums/enum';\nimport { TodoComponent } from '../todo/todo.component';\n\n@Component({\n  selector: 'app-main',\n  standalone: true,\n  templateUrl: './main.component.html',\n  imports: [CommonModule, TodoComponent],\n})\nexport class MainComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n  editingId: string | null = null;\n\n  // grazie a computed possiamo creare un nuovo\n  // signal basato su altri signal\n  visibleTodos = computed(() => {\n    const todos = this.todosService.todosSig();\n    const filter = this.todosService.filterSig();\n\n    if (filter === FilterEnum.active) {\n      return todos.filter((todo) => !todo.completed);\n    } else if (filter === FilterEnum.completed) {\n      return todos.filter((todo) => todo.completed);\n    }\n    return todos;\n  });\n\n  isAllTodosSelected = computed(() => {\n    this.todosService.todosSig().every((todo) => todo.completed);\n  });\n\n  setEditingId(editingId: string | null) {\n    this.editingId = editingId;\n  }\n\n  toggleAllTodos(event: Event): void {\n    debugger\n    this.todosService.toggleAllTodos(\n      (event.target as HTMLInputElement).checked\n    );\n  }\n}\n",
+            "sourceCode": "import { Component, computed, inject } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosService } from '../services/todos.service';\nimport { FilterEnum } from '../../../core/enums/enum';\nimport { TodoComponent } from '../../shared/todo/todo.component';\nimport { ChangeTodoInterface } from 'src/app/core/models/todos.model';\n\n@Component({\n  selector: 'app-main',\n  standalone: true,\n  templateUrl: './main.component.html',\n  imports: [CommonModule, TodoComponent],\n})\nexport class MainComponent {\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n  editingId: string | null = null;\n\n  // grazie a computed possiamo creare un nuovo\n  // signal basato su altri signal\n  visibleTodos = computed(() => {\n    const todos = this.todosService.todosSig();\n    const filter = this.todosService.filterSig();\n\n    if (filter === FilterEnum.active) {\n      return todos.filter((todo) => !todo.completed);\n    } else if (filter === FilterEnum.completed) {\n      return todos.filter((todo) => todo.completed);\n    }\n    return todos;\n  });\n\n  isAllTodosSelected = computed(() => {\n    this.todosService.todosSig().every((todo) => todo.completed);\n  });\n\n  setEditingId(editingId: string | null) {\n    this.editingId = editingId;\n  }\n\n  changeTodoText(changedTodo: ChangeTodoInterface) {\n    this.todosService.changeTodo(changedTodo.id, changedTodo.text);\n  }\n\n  toggleAllTodos(event: Event): void {\n    this.todosService.toggleAllTodos(\n      (event.target as HTMLInputElement).checked\n    );\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "templateData": "<section class=\"main\" [ngClass]=\"{ hidden: todosService.noTodosClass() }\">\n  <input\n    id=\"toggle-all\"\n    class=\"toggle-all\"\n    type=\"checkbox\"\n    [checked]=\"isAllTodosSelected()\"\n    (change)=\"toggleAllTodos($event)\"\n  />\n  <label for=\"toggle-all\">Mark all as completed</label>\n  <ul class=\"todo-list\">\n    <app-todo\n      *ngFor=\"let todo of visibleTodos()\"\n      [todo]=\"todo\"\n      [isEditing]=\"editingId === todo.id\"\n      (setEditingId)=\"setEditingId($event)\"\n    ></app-todo>\n  </ul>\n</section>\n"
+            "templateData": "<section class=\"main\" [ngClass]=\"{ hidden: todosService.noTodosClass() }\">\n  <input\n    id=\"toggle-all\"\n    class=\"toggle-all\"\n    type=\"checkbox\"\n    [checked]=\"isAllTodosSelected()\"\n    (change)=\"toggleAllTodos($event)\"\n  />\n  <label for=\"toggle-all\">Mark all as completed</label>\n  <ul class=\"todo-list\">\n    <app-todo\n      *ngFor=\"let todo of visibleTodos()\"\n      [todo]=\"todo\"\n      [isEditing]=\"editingId === todo.id\"\n      (setEditingId)=\"setEditingId($event)\"\n      (changeTodoText)=\"changeTodoText($event)\"\n    ></app-todo>\n  </ul>\n</section>\n"
         },
         {
             "name": "TaskComponent",
@@ -995,8 +1055,8 @@
         },
         {
             "name": "TodoComponent",
-            "id": "component-TodoComponent-d54a1eed2b16d93b49f1a38acee67f54d77a6151d9e5ee56c1efefd51f1487201a72c06d4df21f7abb7a5d1f645eea08b7a0f0fb5cd6532073059b6706a0bf45",
-            "file": "src/app/components/features/todo/todo.component.ts",
+            "id": "component-TodoComponent-7811f858871390386d11d49812fe58a9b7f43630290054a4c161c5caa610fe3a9a289570912c74aeeaa9afc61b15504e48e061e15438a466cbcf406b42f6f43c",
+            "file": "src/app/components/shared/todo/todo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1017,7 +1077,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "optional": false,
-                    "line": 26,
+                    "line": 28,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1027,18 +1087,26 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "optional": false,
-                    "line": 25,
+                    "line": 27,
                     "type": "TodosInterface",
                     "decorators": []
                 }
             ],
             "outputsClass": [
                 {
+                    "name": "changeTodoText",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "EventEmitter<ChangeTodoInterface>"
+                },
+                {
                     "name": "setEditingId",
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 31,
                     "type": "EventEmitter<string | null>"
                 }
             ],
@@ -1051,7 +1119,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 38
                 },
                 {
                     "name": "textInput",
@@ -1060,7 +1128,7 @@
                     "type": "ElementRef",
                     "optional": true,
                     "description": "",
-                    "line": 28,
+                    "line": 32,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1079,7 +1147,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 32
+                    "line": 36
                 }
             ],
             "methodsClass": [
@@ -1096,7 +1164,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1117,7 +1185,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 53,
+                    "line": 57,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1134,7 +1202,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1155,7 +1223,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1165,7 +1233,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1175,7 +1243,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 68,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1185,7 +1253,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 66,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1204,7 +1272,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewChild,\n  inject,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { TodosInterface } from '../../../core/models/todos.model';\nimport { TodosService } from '../services/todos.service';\n\n@Component({\n  selector: 'app-todo',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './todo.component.html',\n})\nexport class TodoComponent implements OnInit, OnChanges {\n  @Input({ required: true }) todo!: TodosInterface;\n  @Input({ required: true }) isEditing!: boolean;\n  @Output() setEditingId: EventEmitter<string | null> = new EventEmitter();\n  @ViewChild('textInput') textInput?: ElementRef;\n\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n\n  editingText: string = '';\n\n  ngOnInit(): void {\n    this.editingText = this.todo.title;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (changes['isEditing'].currentValue) {\n      setTimeout(() => {\n        this.textInput?.nativeElement.focus();\n      }, 0);\n    }\n  }\n\n  changeText(event: Event): void {\n    const value = (event.target as HTMLInputElement).value;\n    this.editingText = value;\n  }\n\n  changeTodo(): void {\n    this.todosService.changeTodo(this.todo.id, this.editingText);\n    this.setEditingId.emit(null);\n  }\n\n  setTodoInEditMode(): void {\n    this.setEditingId.emit(this.todo.id);\n  }\n\n  removeTodo() {\n    this.todosService.removeTodo(this.todo.id);\n  }\n\n  toggleTodo() {\n    this.todosService.toggleTodo(this.todo.id);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChanges,\n  ViewChild,\n  inject,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport {\n  ChangeTodoInterface,\n  TodosInterface,\n} from '../../../core/models/todos.model';\nimport { TodosService } from '../../features/services/todos.service';\n\n@Component({\n  selector: 'app-todo',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './todo.component.html',\n})\nexport class TodoComponent implements OnInit, OnChanges {\n  @Input({ required: true }) todo!: TodosInterface;\n  @Input({ required: true }) isEditing!: boolean;\n  @Output() changeTodoText: EventEmitter<ChangeTodoInterface> =\n    new EventEmitter();\n  @Output() setEditingId: EventEmitter<string | null> = new EventEmitter();\n  @ViewChild('textInput') textInput?: ElementRef;\n\n  // dalla versione 14 di angular è posibile utilizzare\n  // la funazione Inject per iniettare servizi\n  todosService = inject(TodosService);\n\n  editingText: string = '';\n\n  ngOnInit(): void {\n    this.editingText = this.todo.title;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (changes['isEditing'].currentValue) {\n      setTimeout(() => {\n        this.textInput?.nativeElement.focus();\n      }, 0);\n    }\n  }\n\n  changeText(event: Event): void {\n    const value = (event.target as HTMLInputElement).value;\n    this.editingText = value;\n  }\n\n  changeTodo(): void {\n    // emit evento di modifica del todo\n    this.changeTodoText.emit({\n      id: this.todo.id,\n      text: this.editingText,\n    } as ChangeTodoInterface);\n    // una volta modificato il todo verà emesso il valore null\n    // quindi non ci saranno todo da modificare\n    this.setEditingId.emit(null);\n  }\n\n  setTodoInEditMode(): void {\n    // verà emesso il valore l'id del todo da modificare\n    this.setEditingId.emit(this.todo.id);\n  }\n\n  removeTodo() {\n    this.todosService.removeTodo(this.todo.id);\n  }\n\n  toggleTodo() {\n    this.todosService.toggleTodo(this.todo.id);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1292,6 +1360,26 @@
                 "defaultValue": "{\r\n  onPinTask: action('onPinTask'),\r\n  onArchiveTask: action('onArchiveTask'),\r\n}"
             },
             {
+                "name": "actionsData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/todo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  changeTodoText: action('changeTodoText'),\r\n  setEditingId: action('setEditingId'),\r\n}"
+            },
+            {
+                "name": "Active",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.active,\r\n    typeFilter: FilterEnum.active,\r\n  },\r\n}"
+            },
+            {
                 "name": "Archived",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1302,6 +1390,26 @@
                 "defaultValue": "{\r\n  args: {\r\n    task: {\r\n      ...Default.args?.task,\r\n      state: 'TASK_ARCHIVED',\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "ChangeText",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/todo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    isEditing: true ,\r\n  },\r\n}"
+            },
+            {
+                "name": "Completed",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/a-filter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.completed,\r\n    typeFilter: FilterEnum.completed,\r\n  },\r\n}"
+            },
+            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1309,7 +1417,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    textFilter: '1',\r\n    typeFilter: FilterEnum.all\r\n    // task: {\r\n    //   id: '1',\r\n    //   title: 'Test Task',\r\n    //   state: 'FILTER_ALL',\r\n    // },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.all,\r\n    typeFilter: FilterEnum.all,\r\n  },\r\n}"
             },
             {
                 "name": "Default",
@@ -1322,6 +1430,16 @@
                 "defaultValue": "{\r\n  args: {\r\n    task: {\r\n      id: '1',\r\n      title: 'Test Task',\r\n      state: 'TASK_INBOX',\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/todo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    todo: {\r\n      userId: 1,\r\n      id: '1',\r\n      title: 'Todo Completato',\r\n      completed: true,\r\n    },\r\n  },\r\n}"
+            },
+            {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1332,14 +1450,34 @@
                 "defaultValue": "{\r\n  title: 'Task',\r\n  component: TaskComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: TaskComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onPinTask: actionsData.onPinTask,\r\n      onArchiveTask: actionsData.onArchiveTask,\r\n    },\r\n  }),\r\n}"
             },
             {
-                "name": "meta1",
+                "name": "metaAFilter",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/a-filter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AFilterComponent>",
-                "defaultValue": "{\r\n  title: 'a-filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  title: 'Filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "metaTodo",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/todo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TodoComponent>",
+                "defaultValue": "{\r\n  title: 'Todo',\r\n  component: TodoComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: TodoComponent) => ({\r\n    props: {\r\n      ...args,\r\n      changeTodoText: actionsData.changeTodoText,\r\n      setEditingId: actionsData.setEditingId,\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "NotCompleteTodo",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/todo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    todo: {\r\n      userId: 2,\r\n      id: '2',\r\n      title: 'Todo non completato',\r\n      completed: false,\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "Pinned",
@@ -1381,6 +1519,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<TaskComponent>",
                 "file": "src/stories/task.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TodoComponent>",
+                "file": "src/stories/todo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1431,6 +1580,26 @@
                     "defaultValue": "{\r\n  onChangeFilter: action('onChangeFilter'),\r\n}"
                 },
                 {
+                    "name": "Active",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.active,\r\n    typeFilter: FilterEnum.active,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Completed",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/a-filter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.completed,\r\n    typeFilter: FilterEnum.completed,\r\n  },\r\n}"
+                },
+                {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -1438,17 +1607,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    textFilter: '1',\r\n    typeFilter: FilterEnum.all\r\n    // task: {\r\n    //   id: '1',\r\n    //   title: 'Test Task',\r\n    //   state: 'FILTER_ALL',\r\n    // },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    textFilter: FilterEnum.all,\r\n    typeFilter: FilterEnum.all,\r\n  },\r\n}"
                 },
                 {
-                    "name": "meta1",
+                    "name": "metaAFilter",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/a-filter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AFilterComponent>",
-                    "defaultValue": "{\r\n  title: 'a-filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  title: 'Filter',\r\n  component: AFilterComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: AFilterComponent) => ({\r\n    props: {\r\n      ...args,\r\n      onChangeFilter: actionsData.onChangeFilter,\r\n    },\r\n  }),\r\n}"
                 }
             ],
             "src/stories/task.stories.ts": [
@@ -1501,6 +1670,58 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    task: {\r\n      ...Default.args?.task,\r\n      state: 'TASK_PINNED',\r\n    },\r\n  },\r\n}"
+                }
+            ],
+            "src/stories/todo.stories.ts": [
+                {
+                    "name": "actionsData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  changeTodoText: action('changeTodoText'),\r\n  setEditingId: action('setEditingId'),\r\n}"
+                },
+                {
+                    "name": "ChangeText",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    isEditing: true ,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    todo: {\r\n      userId: 1,\r\n      id: '1',\r\n      title: 'Todo Completato',\r\n      completed: true,\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "metaTodo",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TodoComponent>",
+                    "defaultValue": "{\r\n  title: 'Todo',\r\n  component: TodoComponent,\r\n  excludeStories: /.*Data$/,\r\n  tags: ['autodocs'],\r\n  render: (args: TodoComponent) => ({\r\n    props: {\r\n      ...args,\r\n      changeTodoText: actionsData.changeTodoText,\r\n      setEditingId: actionsData.setEditingId,\r\n    },\r\n  }),\r\n}"
+                },
+                {
+                    "name": "NotCompleteTodo",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    todo: {\r\n      userId: 2,\r\n      id: '2',\r\n      title: 'Todo non completato',\r\n      completed: false,\r\n    },\r\n  },\r\n}"
                 }
             ],
             ".storybook/preview.ts": [
@@ -1576,12 +1797,25 @@
                     "description": "",
                     "kind": 180
                 }
+            ],
+            "src/stories/todo.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TodoComponent>",
+                    "file": "src/stories/todo.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
             ]
         }
     },
     "routes": [],
     "coverage": {
-        "count": 1,
+        "count": 0,
         "status": "low",
         "files": [
             {
@@ -1627,7 +1861,7 @@
                 "linktype": "component",
                 "name": "MainComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -1637,15 +1871,6 @@
                 "name": "TodosService",
                 "coveragePercent": 0,
                 "coverageCount": "0/10",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/features/todo/todo.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "TodoComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -1676,6 +1901,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/shared/todo/todo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TodoComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/core/models/a-filter.model.ts",
                 "type": "interface",
                 "linktype": "interface",
@@ -1691,6 +1925,15 @@
                 "name": "Task",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/todos.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ChangeTodoInterface",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -1717,6 +1960,26 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "Active",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/a-filter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Completed",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/a-filter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -1727,7 +1990,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "meta1",
+                "name": "metaAFilter",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1778,6 +2041,56 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Pinned",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/todo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actionsData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/todo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ChangeText",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/todo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/todo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "metaTodo",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/todo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NotCompleteTodo",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

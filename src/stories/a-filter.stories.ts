@@ -1,17 +1,15 @@
-
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { action } from '@storybook/addon-actions';
 import { AFilterComponent } from 'src/app/components/shared/a-filter/a-filter.component';
 import { FilterEnum } from 'src/app/core/enums/enum';
 
-
 export const actionsData = {
   onChangeFilter: action('onChangeFilter'),
 };
 
-const meta1: Meta<AFilterComponent> = {
-  title: 'a-filter',
+const metaAFilter: Meta<AFilterComponent> = {
+  title: 'Filter',
   component: AFilterComponent,
   excludeStories: /.*Data$/,
   tags: ['autodocs'],
@@ -23,35 +21,27 @@ const meta1: Meta<AFilterComponent> = {
   }),
 };
 
-export default meta1;
+export default metaAFilter;
+
 type Story = StoryObj<AFilterComponent>;
 
 export const Default: Story = {
   args: {
-    textFilter: '1',
-    typeFilter: FilterEnum.all
-    // task: {
-    //   id: '1',
-    //   title: 'Test Task',
-    //   state: 'FILTER_ALL',
-    // },
+    textFilter: FilterEnum.all,
+    typeFilter: FilterEnum.all,
   },
 };
 
-// export const Pinned: Story = {
-//   args: {
-//     task: {
-//       ...Default.args?.task,
-//       state: 'FILTER_ACTIVE',
-//     },
-//   },
-// };
+export const Active: Story = {
+  args: {
+    textFilter: FilterEnum.active,
+    typeFilter: FilterEnum.active,
+  },
+};
 
-// export const Archived: Story = {
-//   args: {
-//     task: {
-//       ...Default.args?.task,
-//       state: 'FILTER_COMPLETED',
-//     },
-//   },
-// };
+export const Completed: Story = {
+  args: {
+    textFilter: FilterEnum.completed,
+    typeFilter: FilterEnum.completed,
+  },
+};

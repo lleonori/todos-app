@@ -6,14 +6,16 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChange,
   SimpleChanges,
   ViewChild,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodosInterface } from '../../../core/models/todos.model';
-import { TodosService } from '../services/todos.service';
+import {
+  ChangeTodoInterface,
+  TodosInterface,
+} from '../../../core/models/todos.model';
+import { TodosService } from '../../features/services/todos.service';
 
 @Component({
   selector: 'app-todo',
@@ -24,6 +26,8 @@ import { TodosService } from '../services/todos.service';
 export class TodoComponent implements OnInit, OnChanges {
   @Input({ required: true }) todo!: TodosInterface;
   @Input({ required: true }) isEditing!: boolean;
+  @Output() changeTodoText: EventEmitter<ChangeTodoInterface> =
+    new EventEmitter();
   @Output() setEditingId: EventEmitter<string | null> = new EventEmitter();
   @ViewChild('textInput') textInput?: ElementRef;
 
@@ -51,11 +55,18 @@ export class TodoComponent implements OnInit, OnChanges {
   }
 
   changeTodo(): void {
-    this.todosService.changeTodo(this.todo.id, this.editingText);
+    // emit evento di modifica del todo
+    this.changeTodoText.emit({
+      id: this.todo.id,
+      text: this.editingText,
+    } as ChangeTodoInterface);
+    // una volta modificato il todo verà emesso il valore null
+    // quindi non ci saranno todo da modificare
     this.setEditingId.emit(null);
   }
 
   setTodoInEditMode(): void {
+    // verà emesso il valore l'id del todo da modificare
     this.setEditingId.emit(this.todo.id);
   }
 

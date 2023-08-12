@@ -4,3 +4,7 @@ export interface TodosInterface {
   title: string;
   completed: boolean;
 }
+export interface ChangeTodoInterface {
+  id: string;
+  text: string;
+}

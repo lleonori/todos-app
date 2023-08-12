@@ -2,7 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
-import { TodoComponent } from '../todo/todo.component';
+import { TodoComponent } from '../../shared/todo/todo.component';
+import { ChangeTodoInterface } from 'src/app/core/models/todos.model';
 
 @Component({
   selector: 'app-main',
@@ -36,6 +37,10 @@ export class MainComponent {
 
   setEditingId(editingId: string | null) {
     this.editingId = editingId;
+  }
+
+  changeTodoText(changedTodo: ChangeTodoInterface) {
+    this.todosService.changeTodo(changedTodo.id, changedTodo.text);
   }
 
   toggleAllTodos(event: Event): void {

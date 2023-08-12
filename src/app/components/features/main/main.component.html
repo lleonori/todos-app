@@ -13,6 +13,7 @@
       [todo]="todo"
       [isEditing]="editingId === todo.id"
       (setEditingId)="setEditingId($event)"
+      (changeTodoText)="changeTodoText($event)"
     ></app-todo>
   </ul>
 </section>
