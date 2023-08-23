@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "storybook": "ng run todos-app:storybook",
+    "build-storybook": "ng run todos-app:build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +28,14 @@
     "@angular-devkit/build-angular": "^16.1.5",
     "@angular/cli": "~16.1.5",
     "@angular/compiler-cli": "^16.1.6",
+    "@compodoc/compodoc": "^1.1.21",
+    "@storybook/addon-docs": "^7.2.3",
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/angular": "^7.2.3",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
@@ -33,6 +43,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.2.3",
     "typescript": "~4.9.4"
   }
 }
