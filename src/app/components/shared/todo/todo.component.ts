@@ -15,7 +15,7 @@ import {
   ChangeTodoInterface,
   TodosInterface,
 } from '../../../core/models/todos.model';
-import { TodosService } from '../../features/services/todos.service';
+import { TodosService } from '../../../core/services/todos.service';
 
 @Component({
   selector: 'app-todo',

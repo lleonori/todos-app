@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodosService } from '../services/todos.service';
+import { TodosService } from '../../../core/services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
 import { TodoComponent } from '../../shared/todo/todo.component';
 import { ChangeTodoInterface } from 'src/app/core/models/todos.model';

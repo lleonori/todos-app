@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodosService } from '../../features/services/todos.service';
+import { TodosService } from '../../../core/services/todos.service';
 import { FilterEnum } from 'src/app/core/enums/enum';
 
 @Component({
