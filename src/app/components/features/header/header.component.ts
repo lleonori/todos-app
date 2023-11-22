@@ -14,14 +14,14 @@ export class HeaderComponent {
   todosService = inject(TodosService);
   text: string = '';
 
-  changeText(event: Event): void {
+  onChangeText(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.value) {
       this.text = target.value;
     }
   }
 
-  addTodo(): void {
+  onAddTodo(): void {
     if (this.text) {
       this.todosService.addTodo(this.text);
     }

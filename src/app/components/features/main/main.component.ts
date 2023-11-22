@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TodosService } from '../../../core/services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
 import { TodoComponent } from '../../shared/todo/todo.component';
-import { ChangeTodoInterface } from 'src/app/core/models/todos.model';
-
+import { IChangeTodo } from 'src/app/core/models/ITodos';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -35,17 +34,25 @@ export class MainComponent {
     this.todosService.todosSig().every((todo) => todo.completed);
   });
 
-  setEditingId(editingId: string | null) {
-    this.editingId = editingId;
-  }
-
-  changeTodoText(changedTodo: ChangeTodoInterface) {
-    this.todosService.changeTodo(changedTodo.id, changedTodo.text);
-  }
-
-  toggleAllTodos(event: Event): void {
+  onToggleAllTodos(event: Event): void {
     this.todosService.toggleAllTodos(
       (event.target as HTMLInputElement).checked
     );
+  }
+
+  onSetEditingId(editingId: string | null) {
+    this.editingId = editingId;
+  }
+
+  onChangeTodoText(changedTodo: IChangeTodo) {
+    this.todosService.changeTodo(changedTodo.id, changedTodo.text);
+  }
+
+  onToggleTodo(id: string) {
+    this.todosService.toggleTodo(id);
+  }
+
+  onRemoveTodo(id: string) {
+    this.todosService.removeTodo(id);
   }
 }

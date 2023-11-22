@@ -5,7 +5,7 @@
     placeholder="What needs to be done?"
     autofocus
     [value]="text"
-    (keyup)="changeText($event)"
-    (keyup.enter)="addTodo()"
+    (keyup)="onChangeText($event)"
+    (keyup.enter)="onAddTodo()"
   />
 </header>

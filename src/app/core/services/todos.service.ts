@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { TodosInterface } from '../models/todos.model';
+import { ITodos } from '../models/ITodos';
 import { FilterEnum } from '../enums/enum';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { FilterEnum } from '../enums/enum';
 })
 export class TodosService {
   // dichiarazione del Signal
-  todosSig = signal<TodosInterface[]>([]);
+  todosSig = signal<ITodos[]>([]);
   filterSig = signal<FilterEnum>(FilterEnum.all);
 
   noTodosClass = computed(() => {
@@ -16,7 +16,7 @@ export class TodosService {
   });
 
   addTodo(text: string): void {
-    const newTodo: TodosInterface = {
+    const newTodo: ITodos = {
       id: Math.random().toString(16),
       title: text,
       completed: false,

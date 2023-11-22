@@ -4,18 +4,18 @@
       class="toggle"
       type="checkbox"
       [checked]="todo.completed"
-      (change)="toggleTodo()"
+      (change)="onToggleTodo()"
     />
-    <label (dblclick)="setTodoInEditMode()">{{ todo.title }}</label>
-    <button class="destroy" (click)="removeTodo()"></button>
+    <label (dblclick)="onSetTodoInEditMode()">{{ todo.title }}</label>
+    <button class="destroy" (click)="onRemoveTodo()"></button>
   </div>
   <ng-container *ngIf="isEditing">
     <input
       class="edit"
       #textInput
       [value]="editingText"
-      (keyup)="changeText($event)"
-      (keyup.enter)="changeTodo()"
+      (keyup)="onChangeText($event)"
+      (keyup.enter)="onChangeTodo()"
     />
   </ng-container>
 </li>

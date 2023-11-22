@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -8,14 +9,8 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ChangeTodoInterface,
-  TodosInterface,
-} from '../../../core/models/todos.model';
-import { TodosService } from '../../../core/services/todos.service';
+import { IChangeTodo, ITodos } from '../../../core/models/ITodos';
 
 @Component({
   selector: 'app-todo',
@@ -24,16 +19,15 @@ import { TodosService } from '../../../core/services/todos.service';
   templateUrl: './todo.component.html',
 })
 export class TodoComponent implements OnInit, OnChanges {
-  @Input({ required: true }) todo!: TodosInterface;
+  @Input({ required: true }) todo!: ITodos;
   @Input({ required: true }) isEditing!: boolean;
-  @Output() changeTodoText: EventEmitter<ChangeTodoInterface> =
-    new EventEmitter();
-  @Output() setEditingId: EventEmitter<string | null> = new EventEmitter();
-  @ViewChild('textInput') textInput?: ElementRef;
 
-  // dalla versione 14 di angular è posibile utilizzare
-  // la funazione Inject per iniettare servizi
-  todosService = inject(TodosService);
+  @Output() changeTodoText: EventEmitter<IChangeTodo> = new EventEmitter();
+  @Output() setEditingId: EventEmitter<string | null> = new EventEmitter();
+  @Output() removeTodo: EventEmitter<string | null> = new EventEmitter();
+  @Output() toggleTodo: EventEmitter<string | null> = new EventEmitter();
+
+  @ViewChild('textInput') textInput?: ElementRef;
 
   editingText: string = '';
 
@@ -49,32 +43,32 @@ export class TodoComponent implements OnInit, OnChanges {
     }
   }
 
-  changeText(event: Event): void {
+  onChangeText(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.editingText = value;
   }
 
-  changeTodo(): void {
+  onChangeTodo(): void {
     // emit evento di modifica del todo
     this.changeTodoText.emit({
       id: this.todo.id,
       text: this.editingText,
-    } as ChangeTodoInterface);
+    } as IChangeTodo);
     // una volta modificato il todo verà emesso il valore null
     // quindi non ci saranno todo da modificare
     this.setEditingId.emit(null);
   }
 
-  setTodoInEditMode(): void {
+  onSetTodoInEditMode(): void {
     // verà emesso il valore l'id del todo da modificare
     this.setEditingId.emit(this.todo.id);
   }
 
-  removeTodo() {
-    this.todosService.removeTodo(this.todo.id);
+  onToggleTodo() {
+    this.toggleTodo.emit(this.todo.id);
   }
 
-  toggleTodo() {
-    this.todosService.toggleTodo(this.todo.id);
+  onRemoveTodo() {
+    this.removeTodo.emit(this.todo.id);
   }
 }

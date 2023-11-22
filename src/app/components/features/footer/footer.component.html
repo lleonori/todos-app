@@ -6,23 +6,26 @@
   <ul class="filters">
     <li>
       <app-a-filter
+        [selectedFilter]="filterSig() === filterEnum.all"
         [textFilter]="'All'"
         [typeFilter]="filterEnum.all"
-        (onChangeFilter)="changeFilter($event)"
+        (changeFilter)="onChangeFilter($event)"
       ></app-a-filter>
     </li>
     <li>
       <app-a-filter
+        [selectedFilter]="filterSig() === filterEnum.active"
         [textFilter]="'Active'"
         [typeFilter]="filterEnum.active"
-        (onChangeFilter)="changeFilter($event)"
+        (changeFilter)="onChangeFilter($event)"
       ></app-a-filter>
     </li>
     <li>
       <app-a-filter
+        [selectedFilter]="filterSig() === filterEnum.completed"
         [textFilter]="'Completed'"
         [typeFilter]="filterEnum.completed"
-        (onChangeFilter)="changeFilter($event)"
+        (changeFilter)="onChangeFilter($event)"
       ></app-a-filter>
     </li>
   </ul>

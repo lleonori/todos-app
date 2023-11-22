@@ -4,7 +4,7 @@
     class="toggle-all"
     type="checkbox"
     [checked]="isAllTodosSelected()"
-    (change)="toggleAllTodos($event)"
+    (change)="onToggleAllTodos($event)"
   />
   <label for="toggle-all">Mark all as completed</label>
   <ul class="todo-list">
@@ -12,8 +12,10 @@
       *ngFor="let todo of visibleTodos()"
       [todo]="todo"
       [isEditing]="editingId === todo.id"
-      (setEditingId)="setEditingId($event)"
-      (changeTodoText)="changeTodoText($event)"
+      (setEditingId)="onSetEditingId($event)"
+      (changeTodoText)="onChangeTodoText($event)"
+      (toggleTodo)="onToggleTodo($event!)"
+      (removeTodo)="onRemoveTodo($event!)"
     ></app-todo>
   </ul>
 </section>
