@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../../../core/services/todos.service';
 
@@ -7,6 +7,7 @@ import { TodosService } from '../../../core/services/todos.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   // dalla versione 14 di angular è posibile utilizzare

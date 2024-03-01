@@ -1,4 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../../../core/services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
@@ -9,6 +14,7 @@ import { AFilterComponent } from '../../shared/a-filter/a-filter.component';
   standalone: true,
   templateUrl: './footer.component.html',
   imports: [CommonModule, AFilterComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   todosService = inject(TodosService);

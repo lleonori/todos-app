@@ -1,4 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodosService } from '../../../core/services/todos.service';
 import { FilterEnum } from '../../../core/enums/enum';
@@ -9,6 +14,7 @@ import { IChangeTodo } from 'src/app/core/models/ITodos';
   standalone: true,
   templateUrl: './main.component.html',
   imports: [CommonModule, TodoComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
   // dalla versione 14 di angular è posibile utilizzare
